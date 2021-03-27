@@ -32,6 +32,6 @@ public class MovieCatalogServiceController {
        return ratings.stream().map(rating -> {
             Movie movie= restTemplate.getForObject("http://localhost:8081/movies/"+rating.getMovieId(), Movie.class);
             return new CatalogItem(movie.getName(),rating.getRating(),"Desc");
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList());    
     }
 }
