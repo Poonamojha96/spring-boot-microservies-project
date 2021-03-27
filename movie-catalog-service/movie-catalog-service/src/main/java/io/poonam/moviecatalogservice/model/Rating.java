@@ -1,4 +1,4 @@
-package io.poonam.ratingsdataservice.model;
+package io.poonam.moviecatalogservice.model;
 
 public class Rating {
     private String movieId;
