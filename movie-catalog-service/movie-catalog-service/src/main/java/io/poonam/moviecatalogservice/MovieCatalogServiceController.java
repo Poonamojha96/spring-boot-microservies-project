@@ -22,9 +22,9 @@ public class MovieCatalogServiceController {
     @RequestMapping("/{userId}")
     public List<CatalogItem> getCatalog(@PathVariable("userId") String userId){
 
-        UserRatings userRatings=restTemplate.getForObject("http://localhost:8082/ratingsData/users/"+userId, UserRatings.class);
+        UserRatings userRatings=restTemplate.getForObject("http://ratings-data-service/ratingsData/users/"+userId, UserRatings.class);
        return userRatings.getUserRatings().stream().map(rating -> {
-            Movie movie= restTemplate.getForObject("http://localhost:8081/movies/"+rating.getMovieId(), Movie.class);
+            Movie movie= restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
             return new CatalogItem(movie.getName(),rating.getRating(),"Desc");
         }).collect(Collectors.toList());
     }
